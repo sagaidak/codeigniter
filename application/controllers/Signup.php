@@ -75,7 +75,7 @@ class signup extends CI_Controller
             $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error in phone(+380ХХ...).  Please try again.</div>');
             $error = true; 
         }
-        if(! preg_match('~^[а-яА-ЯёЁ]+$~u', $fio)){
+        if(! preg_match('~^[а-яА-ЯёЁ ]+$~u', $fio)){
             $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error in FIO(Русские буквы и пробел).  Please try again.</div>');
             $error = true; 
         } 
