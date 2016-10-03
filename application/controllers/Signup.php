@@ -71,7 +71,9 @@ class signup extends CI_Controller
             $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error in email(Введите правильно).  Please try again.</div>');
             $error = true; 
         }
-        if(! preg_match('~^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}+$~', $phone)) {
+        
+            //~^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}+$~
+        if(! preg_match('~^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$~i', $phone)) {
             $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error in phone(+380ХХ...).  Please try again.</div>');
             $error = true; 
         }
