@@ -89,5 +89,9 @@ class signup extends CI_Controller
         }
 
     }
+
+    public function checkmail(){
+        echo 'qwe';
+    }
 }
 ?>

@@ -5,8 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>User Login Form </title>
 	<link rel="stylesheet" href="<?php echo base_url("bootstrap/css/bootstrap.css"); ?>">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 </head>
-<body>
+<body ng-app="app">
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -34,13 +35,15 @@
 <br/>
 <div class="container">
 	<div class="row">
-		<div class="col-md-4 col-md-offset-4 well">
+		<div class="col-md-4 col-md-offset-4 well" ng-controller="Controller">
 		<?php $attributes = array("name" => "loginform");
 			echo form_open("login/index", $attributes);?>
 			<legend>Login</legend>
 			<div class="form-group">
-				<label for="name">Email</label>
-				<input class="form-control" name="email" placeholder="Enter Email" type="text" value="<?php echo set_value('email'); ?>" />
+				<label for="email" >Email</label>
+				<input ng-model="email" required ng-pattern="emailPattern" class="form-control" name="email" placeholder="Enter Email" type="text" value="<?php echo set_value('email'); ?>
+				" />
+				<span ng-show="loginform.email.$touched && loginform.email.$invalid">Email is incorrect.</span>
 				<span class="text-danger"><?php echo form_error('email'); ?></span>
 			</div>
 			<div class="form-group">
@@ -64,5 +67,17 @@
 </div>
 <script type="text/javascript" src="<?php echo base_url("bootstrap/js/jquery-1.10.2.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("bootstrap/js/bootstrap.js"); ?>"></script>
+
+<script>
+var app = angular.module('app', []);
+
+app.controller('Controller', ['$scope', '$http', function($scope, $http) {
+      $scope.emailPattern = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
+      $scope.passwordPattern = /^.{6,}$/;
+
+    }]);
+
+
+</script>
 </body>
 </html>

@@ -45,6 +45,7 @@
 				<label for="name">First Name</label>
 				<input ng-model="fio" required ng-pattern="namePattern" class="form-control" name="fio" placeholder="FIO" type="text" value="<?php echo set_value('fio'); ?>" />
 				<span ng-show="signupform.fio.$touched && signupform.fio.$invalid">The name is incorrect.</span>
+				{{cmail}}
 				<span class="text-danger"><?php echo form_error('fio'); ?></span>
 			</div>			
 		
@@ -95,13 +96,12 @@
 <script>
 var app = angular.module('app', []);
 
-app.controller('Controller', ['$scope', function($scope) {
+app.controller('Controller', ['$scope', '$http', function($scope, $http) {
       $scope.emailPattern = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
       $scope.phonePattern = /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i;
 
       $scope.namePattern = /^[а-яА-ЯёЁ ]+$/i;
       $scope.passwordPattern = /^.{6,}$/;
-
 
     }]);
 
